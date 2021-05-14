@@ -1,0 +1,54 @@
+command:
+  name: new
+  description: Create a new frontend ux for online Stores
+  options:
+    - name: api-scorecard
+      description:  How to score and validate APIs spec and performance
+      dataType: string
+      defaultValue: project
+      inputType: checkbox    #multiple options
+      choices:
+        project: Project level access 
+        internal: Internal teams collabolartion 
+        external: Extenral facing APIs
+    - name: api-grouping
+      description:  How to group APIs in the API Portal
+      dataType: string
+      #defaultValue: functionality
+      inputType: select    #single options
+      choices:
+        access-level: Access level (e.g restricted, public, etc..)
+        functionality: Functional purpose (e.g. store-items, users, etc..)
+       
+#
+
+sources:
+  include:
+    - name: everything
+      condition: true
+      patterns: [ '**/*' ]
+  exclude:
+    - name: test-container-filers
+      condition: "!#useTestContainers"
+      patterns: [ '**/*TestContainer*' ]
+    - name: hidden-files
+      condition: true
+      patterns:
+        - ".idea/**"
+        - ".git/**"
+        - "target/**"
+
+symbols:
+  derived:
+    - name: camelCaseProjectName
+      expression: "#helper.camelCase(#projectName)"
+
+
+transformations:
+  replace:
+    - name: 'Replace - project creation time in version controller'
+      regex: '1 January 1970 00:00:00 UT'
+      with: '#now'
+    - name: 'Replace - project name in version controller'
+      regex: 'name-mysqlapp'
+      with: '#camelCaseProjectName'

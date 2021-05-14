@@ -1,0 +1,21 @@
+{
+  "routes": [
+    {
+      "title": "online-store login link",
+      "description": "SSO enabled path used by the login button",
+      "path": "/store/login",
+      "method": "GET",
+      "sso-enabled": true,
+      "filters": ["RedirectTo=302, /store"],
+      "order": 0
+    },
+    {
+      "title": "online-store home page",
+      "description": "online-store home page that doesn't require SSO login",
+      "path": "/store/**",
+      "method": "GET",
+      "order": 1000,
+      "filters": [ "CircuitBreaker=frontendCb,forward:/fallback" ]
+    }
+  ]
+}

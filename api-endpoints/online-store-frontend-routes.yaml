@@ -1,0 +1,23 @@
+apiVersion: "tanzu.vmware.com/v1"
+kind: SpringCloudGatewayRouteConfig
+metadata:
+  name: online-store-frontend-routes-config
+spec:
+  service: 
+    name: online-store-frontend-service
+  routes:
+    - predicates:
+        - Path=/store/login
+        - Method=GET
+      filters:
+        - RedirectTo=302, /store
+      ssoEnabled: true
+      order: 0
+      tags:
+        - Customers
+    - predicates:
+        - Path=/store/**
+        - Method=GET
+      order: 1000
+      tags:
+        - Items
