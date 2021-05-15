@@ -6,7 +6,7 @@ command:
       description:  How to score and validate APIs spec and performance
       dataType: string
       defaultValue: project
-      inputType: checkbox    #single options
+      inputType: select    
       choices:
         project: Project level access 
         internal: Internal teams collabolartion 
@@ -15,7 +15,7 @@ command:
       description:  How to group APIs in the API Portal
       dataType: string
       #defaultValue: functionality
-      inputType: select    #single options
+      inputType: select   
       choices:
         access-level: Access level (e.g restricted, public, etc..)
         functionality: Functional purpose (e.g. store-items, users, etc..)
