@@ -11,3 +11,6 @@ metadata:
       url: https://github.com/dektlong/store-frontend-ux.git
       ref:
           branch: main
+    env:
+      name: API_VALIDATION_LEVEL
+      value: external
