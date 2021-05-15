@@ -2,10 +2,10 @@
 apiVersion: experimental.kontinue.io/v1
 kind: Workload
 metadata:
-  name: dekt4pets-frontend
+  name: online-store-frontend
   labels:
-    app.kubernetes.io/name: dekt4pets-frontend
-    app.tanzu.vmware.com/workload-type: api-service
+    app.kubernetes.io/name: online-store-frontend
+    app.tanzu.vmware.com/workload-type: web
   spec:
     git:
       url: https://github.com/dektlong/store-frontend-ux.git

@@ -6,7 +6,7 @@ command:
       description:  How to score and validate APIs spec and performance
       dataType: string
       defaultValue: project
-      inputType: checkbox    #multiple options
+      inputType: checkbox    #single options
       choices:
         project: Project level access 
         internal: Internal teams collabolartion 
