@@ -1,7 +1,7 @@
 {
   "routes": [
     {
-      "title": "online-store login link",
+      "title": "onlinestore login link",
       "description": "SSO enabled path used by the login button",
       "path": "/store/login",
       "method": "GET",
@@ -10,8 +10,8 @@
       "order": 0
     },
     {
-      "title": "online-store home page",
-      "description": "online-store home page that doesn't require SSO login",
+      "title": "onlinestore home page",
+      "description": "onlinestore home page that doesn't require SSO login",
       "path": "/store/**",
       "method": "GET",
       "order": 1000,
