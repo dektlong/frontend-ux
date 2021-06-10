@@ -14,23 +14,19 @@ accelerator:
     description:  How to score and validate APIs spec and performance
     dataType: string
     defaultValue: project
-    inputType: select    #single options
+    inputType: select    
     choices:
       project: Project level access 
       internal: Internal teams collabolartion 
+      external: Extenral facing APIs
   - name: api-grouping
     description:  How to group APIs in the API Portal
     dataType: string
-    inputType: select    #single options
+    #defaultValue: functionality
+    inputType: select   
     choices:
-      access-level: Access level (e.g Restricted, Public, etc..)
-      functionality: Functional purpose (e.g. Items, Customers, etc..)
-      on-off-platform: Execution location (e.g. On-platform, 3rd party, etc..)
-  - name: boot-observer
-    description: Add sidecar integration to Spring Boot Observer
-    dataType: boolean
-    defaultValue: true
-    inputType: toggle
+      access-level: Access level (e.g restricted, public, etc..)
+      functionality: Functional purpose (e.g. store-items, users, etc..)
 
 engine:
   resources:
