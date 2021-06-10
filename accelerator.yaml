@@ -2,12 +2,8 @@ accelerator:
   displayName: Frontend UX for Online Stores
   description: Accelerator to create fronted UX for online Stores
   iconUrl: https://raw.githubusercontent.com/dektlong/dekt-images/main/reactjs-logo.png
-  framework: React, Angular
-  language: ReactJS
-  maintainer: dekt
-  services: Spring Cloud Gateway
   tags:
-    - online-store
+    - online-store-devs
 
   options:
   - name: api-scorecard
