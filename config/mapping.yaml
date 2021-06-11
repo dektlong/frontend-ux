@@ -5,6 +5,6 @@ metadata:
   name: {{appName}}-mapping
 spec:
   gatewayRef:
-    name: onlinestore-gateway
+    name: {{parentAppName}}-gateway
   routeConfigRef:
     name: {{appName}}-routes
