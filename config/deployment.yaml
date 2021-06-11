@@ -1,33 +1,33 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: onlinestore-frontend
+  name: {{appName}}
 spec:
   selector:
     matchLabels:
-      app: onlinestore-frontend
+      app: {{appName}}
   template:
     metadata:
       labels:
-        app: onlinestore-frontend
+        app: {{appName}}
     spec:
       imagePullSecrets: 
       - name: imagereg-secret
       containers:
-        - name: onlinestore-frontend
-          image: {FRONTEND_IMAGE}
+        - name: {{appName}}
+          image: {{appName}}:latest
           ports:
             - containerPort: 8080
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: onlinestore-frontend-service
+  name: {{appName}}-service
 spec:
   ports:
     - port: 80
       targetPort: 8080
   selector:
-    app: onlinestore-frontend
+    app: {{appName}}
 
 
