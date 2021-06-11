@@ -18,6 +18,6 @@ spec:
     - predicates:
         - Path=/store/**
         - Method=GET
-      tags:
-        - {{apiGroup2}}
       order: 1000
+      tags:
+        - {{apiGroup2}}      
