@@ -42,6 +42,6 @@ engine:
             with: '#firstApiGroup'
           - token: "{{apiGroup2}}"
             with: '#secondApiGroup'
-   - name: all-other
+    - name: all-other
       includes: ["**"]
       excludes: ["accelerator.yaml","generator.yaml"]
