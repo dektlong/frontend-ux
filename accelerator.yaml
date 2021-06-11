@@ -10,7 +10,7 @@ accelerator:
     description:  How to score and validate APIs spec and performance
     dataType: string
     required: true
-    defaultValue: project
+    defaultValue: unit
     inputType: select
     choices:
       unit: Unit test local access
@@ -21,7 +21,6 @@ accelerator:
     description: Name of the first API group
     dataType: string
     inputType: text
-    defaultValue: All my APIs
     required: true
   - name: secondApiGroup
     description: Name of the second API group
@@ -30,7 +29,7 @@ accelerator:
 
 engine:
   resources:
-    - name: config-yaml
+    - name: update-deployment-config
       includes: ["config/*.yaml"]
       transformations:
         replace:
@@ -44,4 +43,8 @@ engine:
             with: '#secondApiGroup'
     - name: all-other
       includes: ["**"]
+      transformations:
+        replace:
+          - token: "{{appName}}"
+            with: '#projectName'
       excludes: ["accelerator.yaml","generator.yaml"]
