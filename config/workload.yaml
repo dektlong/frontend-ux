@@ -2,9 +2,9 @@
 apiVersion: experimental.kontinue.io/v1
 kind: Workload
 metadata:
-  name: online-store-frontend
+  name: {{appName}}
   labels:
-    app.kubernetes.io/name: online-store-frontend
+    app.kubernetes.io/name: {{appName}}
     app.tanzu.vmware.com/workload-type: web
   spec:
     git:
@@ -13,4 +13,4 @@ metadata:
           branch: main
     env:
       name: API_VALIDATION_LEVEL
-      value: external
+      value: {{apiValidation}}
