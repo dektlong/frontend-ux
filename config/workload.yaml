@@ -11,6 +11,8 @@ metadata:
       url: https://github.com/dektlong/store-frontend-ux.git
       ref:
           branch: main
-    env:
-      name: API_VALIDATION_LEVEL
-      value: {{apiValidation}}
+    api-validation: {{apiValidation}}
+      ssoRequired: true
+      methodRequired: true
+      pathRequired: true
+      modelRequired: true
