@@ -37,6 +37,6 @@ engine:
       - token: "{{apiGroup1}}"
         with: '#firstApiGroup'
       - token: "{{apiGroup2}}"
-         with: '#secondApiGroup'
+        with: '#secondApiGroup'
     excludes: ["accelerator.yaml"]
       
