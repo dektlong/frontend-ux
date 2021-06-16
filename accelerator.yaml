@@ -6,57 +6,28 @@ accelerator:
   - onlinestore-dev
 
   options:
-  - name: deploymentDomain
-    description: The initial deployment domain 
+  - name: firstApiGroup
+    description: Name of the first API group
     dataType: string
     inputType: text
     required: true
-  - name: apiValidation
-    description:  Policy to score and validate APIs spec and performance
+  - name: secondApiGroup
+    description: Name of the second API group
     dataType: string
-    required: true
-    defaultValue: unit
+    inputType: text
+  - name: routeExamples
+    description:  Which route examples to include 
+    dataType: string
+    defaultValue: unit-read
     inputType: select
     choices:
-      unit: Unit test local access
-      project: Project level access 
-      internal: Internal teams collabolartion 
-      external: Extenral facing APIs
-  - name: ssoProvider
-    description: SSO OpenID identity provider
-    dataType: string
-    inputType: select 
-    required: true
-    choices:
-      amazon: Amazon
-      google: Google
-      okta: Okta (Auth0)
-      microsoft: Microsoft
-      internal: Internal
-  - name: microGatewayHA
-    description: HA setup for micro gateways deployment
-    dataType: string
-    inputType: select
-    required: true
-    defaultValue: 1
-    choices:
-      1: Testing 
-      2: Integration  
-      4: Production
-  - name: microService1Git
-    description: Git URL for 1st microservice in this business workflow
-    dataType: string
-    inputType: text
-    required: true
-  - name: microService2Git
-    description: Git URL for 2nd microservice in this business workflow
-    dataType: string
-    inputType: text
-  - name: apiPortal
-    description: Add API Portal configuration  
-    dataType: boolean
-    defaultValue: true
-    inputType: toggle
+      unit-read: Unit test get only
+      unit-update: Unit test get,update and delete
+      internal-read: Internal teams get only
+      internal-update: Internal teams get, update and delete
+      external-read: Exteral access get only
+      external-update: Exteral access get update and delete
+
 engine:
   resources:
   - name: update-configs
