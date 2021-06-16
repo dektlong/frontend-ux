@@ -1,18 +1,18 @@
 {
   "routes": [
     {
-      "title": "onlinestore login link",
-      "description": "SSO enabled path used by the login button",
-      "path": "/store/login",
+      "title": "{{apiGroup2}} login",
+      "description": "SSO enabled path used to login for {{apiGroup2}}",
+      "path": "/{{apiGroup2}}/login",
       "method": "GET",
       "sso-enabled": true,
-      "filters": ["RedirectTo=302, /store"],
+      "filters": ["RedirectTo=302, /{{apiGroup1}}"],
       "order": 0
     },
     {
-      "title": "onlinestore home page",
-      "description": "onlinestore home page that doesn't require SSO login",
-      "path": "/store/**",
+      "title": "{{apiGroup1}} open home page",
+      "description": "{{apiGroup1}} home page that doesn't require SSO login",
+      "path": "/{{apiGroup1}}/",
       "method": "GET",
       "order": 1000,
       "filters": [ "CircuitBreaker=frontendCb,forward:/fallback" ]
