@@ -30,8 +30,8 @@ accelerator:
 
 engine:
   resources:
-    - name: update-deployment-config
-      includes: ["config/*.yaml"]
+    - name: set-user-selections
+      includes: ["**"]
       transformations:
         replace:
           - token: "{{appName}}"
@@ -40,10 +40,4 @@ engine:
             with: '#firstApiGroup'
           - token: "{{apiGroup2}}"
             with: '#secondApiGroup'
-    - name: all-other
-      includes: ["**"]
-      transformations:
-        replace:
-          - token: "{{appName}}"
-            with: '#projectName'
       excludes: ["accelerator.yaml"]
