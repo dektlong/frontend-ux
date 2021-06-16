@@ -7,17 +7,17 @@ spec:
     name: {{appName}}-service
   routes:
     - predicates:
-        - Path=/store/login
+        - Path=/{apiGroup2}}/login
         - Method=GET
       filters:
-        - RedirectTo=302, /store
+        - RedirectTo=302, /{apiGroup1}}
       ssoEnabled: true
       order: 0
       tags:
-        - {{apiGroup1}}
+        - {{apiGroup2}}
     - predicates:
-        - Path=/store/**
+        - Path=/{{apiGroup1}}/
         - Method=GET
       order: 1000
       tags:
-        - {{apiGroup2}}      
+        - {{apiGroup1}}      
