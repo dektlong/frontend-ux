@@ -18,38 +18,25 @@ accelerator:
   - name: routeExamples
     description:  Which route examples to include 
     dataType: string
-    defaultValue: unit-read
+    defaultValue: unit
     inputType: select
+    required: true
     choices:
-      unit-read: Unit test get only
-      unit-update: Unit test get,update and delete
-      internal-read: Internal teams get only
-      internal-update: Internal teams get, update and delete
-      external-read: Exteral access get only
-      external-update: Exteral access get update and delete
+      simple: App functions
+      sso: App functions + SSO
+      filters: App functions + SSO + filters
 
 engine:
   resources:
-  - name: update-configs
-    includes: ["api-grid/*.*","build/*.*","workflow/*.*"]
+  - name: set-user-selections
+    includes: ["**"]
     transformations:
       replace:
       - token: "{{appName}}"
         with: '#projectName'
-      - token: "{{deploymentDomain}}"
-        with: '#deploymentDomain'
-      - token: "{{ssoProvider}}"
-        with: '#ssoProvider'
-      - token: "{{haCount}}"
-        with: '#microGatewayHA'
-      - token: "{{microService1Git}}"
-        with: '#microService1Git'
-      - token: "{{microService2Git}}"
-        with: '#microService2Git'
-  - name: include-api-portal
-    includes: ["api-grid/api-portal-openapi-ingress.yaml"]
-    condition: '#apiPortal'
-  - name: all-other
-    includes: ["**"]
+      - token: "{{apiGroup1}}"
+        with: '#firstApiGroup'
+      - token: "{{apiGroup2}}"
+         with: '#secondApiGroup'
     excludes: ["accelerator.yaml"]
       
