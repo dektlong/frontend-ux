@@ -30,14 +30,14 @@ accelerator:
 
 engine:
   resources:
-    - name: set-user-selections
-      includes: ["**"]
-      transformations:
-        replace:
-          - token: "{{appName}}"
-            with: '#projectName'
-          - token: "{{apiGroup1}}"
-            with: '#firstApiGroup'
-          - token: "{{apiGroup2}}"
-            with: '#secondApiGroup'
-      excludes: ["accelerator.yaml"]
+  - name: set-user-selections
+    includes: ["**"]
+    transformations:
+      replace:
+      - token: "{{appName}}"
+        with: '#projectName'
+      - token: "{{apiGroup1}}"
+        with: '#firstApiGroup'
+      - token: "{{apiGroup2}}"
+         with: '#secondApiGroup'
+    excludes: ["accelerator.yaml"]
