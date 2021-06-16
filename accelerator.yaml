@@ -18,7 +18,7 @@ accelerator:
   - name: routeExamples
     description:  Which route examples to include 
     dataType: string
-    defaultValue: unit
+    defaultValue: simple
     inputType: select
     required: true
     choices:
