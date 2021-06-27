@@ -1,5 +1,5 @@
 accelerator:
-  displayName: Frontend UX for Online Stores
+ displayName: Frontend UX for Online Stores
   description: Accelerator to create fronted UX for online Stores
   iconUrl: https://raw.githubusercontent.com/dektlong/dekt-images/main/reactjs-logo.png
   tags:
@@ -7,15 +7,18 @@ accelerator:
 
   options:
   - name: firstApiGroup
-    description: Name of the first API group
+    label: First level API group
+    description: Name of the first level API group
     dataType: string
     inputType: text
     required: true
   - name: secondApiGroup
+    label: Second level API group
     description: Name of the second API group
     dataType: string
     inputType: text
   - name: routeExamples
+    label: Route examples
     description:  Which route examples to include 
     dataType: string
     defaultValue: simple
@@ -25,18 +28,36 @@ accelerator:
       simple: App functions
       sso: App functions + SSO
       filters: App functions + SSO + filters
-
+  - name: thirdApiGroup
+    label: Third  level API group
+    description: Name of the third API group
+    dataType: string
+    inputType: text
+    defaultValue: apiGroup3
+  - name: forthApiGroup
+    label: Forth level API group
+    description: Name of the forth API group
+    dataType: string
+    inputType: text
+    defaultValue: apiGroup4
+  - name: fifthApiGroup
+    label: Fifth level API group
+    description: Name of the Fifth API group
+    dataType: string
+    inputType: text
+    defaultValue: apiGroup5
 engine:
-  resources:
-  - name: set-user-selections
-    includes: ["**"]
-    transformations:
-      replace:
-      - token: "{{appName}}"
-        with: '#projectName'
-      - token: "{{apiGroup1}}"
-        with: '#firstApiGroup'
-      - token: "{{apiGroup2}}"
-        with: '#secondApiGroup'
-    excludes: ["accelerator.yaml"]
-      
+  sources:
+   - includes: ["**"]
+     transformations:
+     - type: ReplaceText
+       substitutions:
+       - text: app-name
+         with: "#artifactId"
+       - text: api-group1
+         with: "#firstApiGroup"
+       - text: api-group2
+         with: "#secondApiGroup"
+
+ 
+
