@@ -1,31 +1,31 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{appName}}
+  name: app-name
 spec:
   selector:
     matchLabels:
-      app: {{appName}}
+      app: app-name
   template:
     metadata:
       labels:
-        app: {{appName}}
+        app: app-name
     spec:
       imagePullSecrets: 
       - name: imagereg-secret
       containers:
-        - name: {{appName}}
-          image: {{appName}}:latest
+        - name: app-name
+          image: app-name:latest
           ports:
             - containerPort: 8080
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: {{appName}}-service
+  name: app-name-service
 spec:
   ports:
     - port: 80
       targetPort: 8080
   selector:
-    app: {{appName}}
+    app: app-name
