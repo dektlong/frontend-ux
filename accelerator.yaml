@@ -46,18 +46,16 @@ accelerator:
     dataType: string
     inputType: text
     defaultValue: apiGroup5
+
 engine:
   sources:
-   - includes: ["**"]
-     transformations:
-     - type: ReplaceText
-       substitutions:
-       - text: app-name
-         with: "#artifactId"
-       - text: api-group1
-         with: "#firstApiGroup"
-       - text: api-group2
-         with: "#secondApiGroup"
-
- 
-
+  - includes: ["**"]
+    transformations:
+    - type: ReplaceText
+      substitutions:
+      - text: app-name
+        with: "#artifactId"
+      - text: api-group1
+        with: "#firstApiGroup"
+      - text: api-group2
+        with: "#secondApiGroup"
