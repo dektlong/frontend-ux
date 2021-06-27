@@ -1,23 +1,23 @@
 apiVersion: "tanzu.vmware.com/v1"
 kind: SpringCloudGatewayRouteConfig
 metadata:
-  name: {{appName}}-routes
+  name: app-name-routes
 spec:
   service: 
-    name: {{appName}}-service
+    name: app-name-service
   routes:
     - predicates:
-        - Path=/{apiGroup2}}/login
+        - Path=/api-group2/login
         - Method=GET
       filters:
-        - RedirectTo=302, /{apiGroup1}}
+        - RedirectTo=302, /api-group1
       ssoEnabled: true
       order: 0
       tags:
-        - {{apiGroup2}}
+        - api-group2
     - predicates:
-        - Path=/{{apiGroup1}}/
+        - Path=/api-group1/
         - Method=GET
       order: 1000
       tags:
-        - {{apiGroup1}}      
+        - api-group1      
