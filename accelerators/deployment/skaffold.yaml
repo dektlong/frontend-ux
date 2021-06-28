@@ -8,13 +8,11 @@ build:
     - image: my-dev-registry.example.com/app-name
       custom:
         buildCommand: |
-          ./gradlew :bootBuildImage --imageName="$IMAGE" && \
-          if [ "$PUSH_IMAGE" = "true" ]; then docker push "$IMAGE"; fi
+          npm run build && ./gradlew :app-name:npm_ci
         dependencies:
           paths:
-            - src/main/**
+            - ../../src/**
             - ../../build.gradle
-            - ../../settings.gradle
 deploy:
   kubectl:
     manifests:	# 	the Kubernetes yaml or json manifests.
