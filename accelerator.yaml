@@ -19,16 +19,6 @@ accelerator:
     dataType: string
     defaultValue: apiGroup2
     inputType: text
-  - name: appDeploymentType
-    label: App deployment config
-    description: Type of deployment configurations
-    required: true
-    dataType: string
-    defaultValue: k8s
-    inputType: select
-    choices:
-      k8s: K8s simple
-      k8sSkaffold: K8s with Skaffold configs
   - name: thirdApiGroup
     label: Third  level API group
     description: Name of the third API group
@@ -47,6 +37,16 @@ accelerator:
     dataType: string
     inputType: text
     defaultValue: apiGroup5
+  - name: appDeploymentType
+    label: App deployment config
+    description: Type of deployment configurations
+    required: true
+    dataType: string
+    defaultValue: k8s
+    inputType: select
+    choices:
+      k8s: K8s simple
+      k8sSkaffold: K8s with Skaffold configs
 
 engine:
   sources:
@@ -60,3 +60,17 @@ engine:
         with: "#firstApiGroup"
       - text: api-group2
         with: "#secondApiGroup"
+  - includes: [ "accelerators/deployment/app-simple.yaml" ]
+     condition: "#appDeploymentType == 'k8s'"
+     transformations:
+     - type: ReplaceText
+       substitutions:
+       - text: app-name
+         with: "#artifactId"
+  - includes: [ "accelerators/deployment/app-simple.yaml", "accelerators/deployment/skaffold.yaml"]
+    condition: "#appDeploymentType == 'k8sSkaffold'"
+    transformations:
+    - type: ReplaceText
+      substitutions:
+      - text: app-name
+        with: "#artifactId"
