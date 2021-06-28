@@ -61,12 +61,12 @@ engine:
       - text: api-group2
         with: "#secondApiGroup"
   - includes: [ "accelerators/deployment/app-simple.yaml" ]
-     condition: "#appDeploymentType == 'k8s'"
-     transformations:
-     - type: ReplaceText
-       substitutions:
-       - text: app-name
-         with: "#artifactId"
+    condition: "#appDeploymentType == 'k8s'"
+    transformations:
+    - type: ReplaceText
+      substitutions:
+      - text: app-name
+        with: "#artifactId"
   - includes: [ "accelerators/deployment/app-simple.yaml", "accelerators/deployment/skaffold.yaml"]
     condition: "#appDeploymentType == 'k8sSkaffold'"
     transformations:
