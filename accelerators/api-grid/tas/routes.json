@@ -2,17 +2,17 @@
   "routes": [
     {
       "title": "api-groupd2 login",
-      "description": "SSO enabled path used to login for api-group2",
-      "path": "/api-group2/login",
+      "description": "SSO enabled path used to login for {{api-group2}}",
+      "path": "/{{api-group2}}/login",
       "method": "GET",
       "sso-enabled": true,
-      "filters": ["RedirectTo=302, /api-group1"],
+      "filters": ["RedirectTo=302, /{{api-group1}}"],
       "order": 0
     },
     {
-      "title": "api-group1 open home page",
-      "description": "api-group1 home page that doesn't require SSO login",
-      "path": "/api-group1/",
+      "title": "{{api-group1}} open home page",
+      "description": "{{api-group1}} home page that doesn't require SSO login",
+      "path": "/{{api-group1}}/",
       "method": "GET",
       "order": 1000,
       "filters": [ "CircuitBreaker=frontendCb,forward:/fallback" ]

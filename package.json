@@ -1,5 +1,5 @@
 {
-  "name": "app-name",
+  "name": "{{app-name}}",
   "version": "1.0.0",
   "dependencies": {
     "axios": "^0.21.1",
