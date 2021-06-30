@@ -14,6 +14,7 @@ accelerator:
   - name: secondApiGroup
     label: Second level API group
     description: Name of the second API group
+    defaultValue: apiGroup2
     display: true
   - name: thirdApiGroup
     label: Third  level API group
@@ -32,6 +33,7 @@ accelerator:
     description: Type of deployment configurations
     required: true
     defaultValue: k8s
+    inputType: select
     choices:
       k8s: K8s simple
       k8sSkaffold: K8s with Skaffold configs
