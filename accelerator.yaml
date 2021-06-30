@@ -54,5 +54,5 @@ engine:
   transformations:
   - type: ReplaceText
     substitutions:
-    - text: {{app-name}}
+    - text: app-name
       with: "#artifactId"

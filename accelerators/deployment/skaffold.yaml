@@ -5,10 +5,10 @@ build:
   local:
     concurrency: 2
   artifacts:
-    - image: my-dev-registry.example.com/{{app-name}}
+    - image: my-dev-registry.example.com/app-name
       custom:
         buildCommand: |
-          npm run build && ./gradlew :{{app-name}}:npm_ci
+          npm run build && ./gradlew :app-name:npm_ci
         dependencies:
           paths:
             - ../../src/**
