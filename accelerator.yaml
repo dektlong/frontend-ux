@@ -34,7 +34,7 @@ accelerator:
     required: true
     defaultValue: k8s
     inputType: select
-   choices:
+    choices:
     - value: k8s
       text: K8s simple
     - valute: k8sSkaffold
