@@ -37,7 +37,7 @@ accelerator:
     choices:
     - value: k8s
       text: K8s simple
-    - valute: k8sSkaffold
+    - value: k8sSkaffold
       text: K8s with Skaffold configs
 
 engine:
