@@ -28,6 +28,7 @@ accelerator:
     label: Fifth level API group
     description: Name of the Fifth API group
     defaultValue: apiGroup5
+  
   - name: appDeploymentType
     label: App deployment config
     description: Type of deployment configurations
@@ -37,13 +38,30 @@ accelerator:
     choices:
     - value: k8s
       text: K8s simple
-    - value: k8sSkaffold
-      text: K8s with Skaffold configs
+    - value: kNative
+      text: Cloud Native Runtime (kNative) configurations
+    - value: cf
+      text: Cloud Foundry manifest
+      
+ - name: apiSamples
+    inputType: checkbox
+    label: API samples
+    description: API developement samples
+    display: true
+    dataType: [string]
+    defaultValue:
+      - k8s
+    choices:
+      - value: k8s  
+        text: routes and gateway definitions for k8s
+      - value: cf
+        text: routes and gateway definitions for Cloud Foundry
+
 
 engine:
   sources:
   - includes: ["**"]
-    excludes: [ "accelerators/deployment/**" ]
+    excludes: [ "accelerators/**" ]
     transformations:
     - type: ReplaceText
       substitutions:
@@ -53,8 +71,12 @@ engine:
         with: "#secondApiGroup"
   - includes: [ "accelerators/deployment/app-simple.yaml" ]
     condition: "#appDeploymentType == 'k8s'"
-  - includes: [ "accelerators/deployment/app-simple.yaml", "accelerators/deployment/skaffold.yaml"]
-    condition: "#appDeploymentType == 'k8sSkaffold'"
+  - includes: [ "accelerators/deployment/kNative.yaml"]
+    condition: "#appDeploymentType == 'kNative'"
+  - includes: [ "accelerators/api-grid/k8s/**" ]
+    condition: "#apiSamples.contains('k8s')"
+  - includes: [ "accelerators/api-grid/cf/**" ]
+    condition: "#apiSamples.contains('cf')"
   transformations:
   - type: ReplaceText
     substitutions:
