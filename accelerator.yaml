@@ -62,13 +62,6 @@ engine:
   sources:
   - includes: ["**"]
     excludes: [ "accelerators/**" ]
-    transformations:
-    - type: ReplaceText
-      substitutions:
-      - text: api-group1
-        with: "#firstApiGroup"
-      - text: api-group2
-        with: "#secondApiGroup"
   - includes: [ "accelerators/deployment/app-simple.yaml" ]
     condition: "#appDeploymentType == 'k8s'"
   - includes: [ "accelerators/deployment/kNative.yaml"]
@@ -77,8 +70,13 @@ engine:
     condition: "#apiSamples.contains('k8s')"
   - includes: [ "accelerators/api-grid/cf/**" ]
     condition: "#apiSamples.contains('cf')"
-  transformations:
+  
+  transformations: 
   - type: ReplaceText
     substitutions:
     - text: app-name
       with: "#artifactId"
+    - text: api-group1
+      with: "#firstApiGroup"
+    - text: api-group2
+      with: "#secondApiGroup"
