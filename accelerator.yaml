@@ -36,14 +36,14 @@ accelerator:
     defaultValue: k8s
     inputType: select
     choices:
-    - value: k8s
-      text: K8s simple
-    - value: kNative
-      text: Cloud Native Runtime (kNative) configurations
-    - value: cf
-      text: Cloud Foundry manifest
+      - value: k8s
+        text: K8s simple
+      - value: kNative
+        text: Cloud Native Runtime (kNative) configurations
+      - value: cf
+        text: Cloud Foundry manifest
       
- - name: apiSamples
+  - name: apiSamples
     inputType: checkbox
     label: API samples
     description: API developement samples
