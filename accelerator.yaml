@@ -38,7 +38,7 @@ accelerator:
     choices:
       - value: k8s
         text: K8s simple
-      - value: kNative
+      - value: cnr
         text: Cloud Native Runtime (kNative)
       - value: cf
         text: Cloud Foundry manifest
@@ -64,8 +64,8 @@ engine:
     excludes: [ "accelerators/**" ]
   - includes: [ "accelerators/deployment/app-simple.yaml" ]
     condition: "#appDeploymentType == 'k8s'"
-  - includes: [ "accelerators/deployment/kNative.yaml"]
-    condition: "#appDeploymentType == 'kNative'"
+  - includes: [ "accelerators/deployment/app-knative.yaml"]
+    condition: "#appDeploymentType == 'cnr'"
   - includes: [ "accelerators/api-grid/k8s/**" ]
     condition: "#apiSamples.contains('k8s')"
   - includes: [ "accelerators/api-grid/cf/**" ]
