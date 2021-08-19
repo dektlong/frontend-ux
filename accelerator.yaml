@@ -59,24 +59,50 @@ accelerator:
 
 
 engine:
-  sources:
-  - includes: ["**"]
-    excludes: [ "accelerators/**" ]
-  - includes: [ "accelerators/deployment/app-simple.yaml" ]
-    condition: "#appDeploymentType == 'k8s'"
-  - includes: [ "accelerators/deployment/app-knative.yaml"]
-    condition: "#appDeploymentType == 'cnr'"
-  - includes: [ "accelerators/api-grid/k8s/**" ]
-    condition: "#apiSamples.contains('k8s')"
-  - includes: [ "accelerators/api-grid/cf/**" ]
-    condition: "#apiSamples.contains('cf')"
-  
-  transformations: 
-  - type: ReplaceText
-    substitutions:
-    - text: app-name
-      with: "#artifactId"
-    - text: api-group1
-      with: "#firstApiGroup"
-    - text: api-group2
-      with: "#secondApiGroup"
+  merge:
+    #generic transformations
+    - includes: ["**"]
+      excludes: [ "accelerators/**" ]
+      chain:
+        - type: ReplaceText
+          substitutions:
+            - text: app-name
+              with: "#artifactId"
+    #deployment transformation
+    - includes: [ "accelerators/deployment/app-simple.yaml" ]
+      condition: "#appDeploymentType == 'k8s'"
+      chain:
+        - type: ReplaceText
+          substitutions:
+            - text: app-name
+              with: "#artifactId"
+    - includes: [ "accelerators/deployment/app-knative.yaml"]
+      condition: "#appDeploymentType == 'cnr'"
+      chain:
+        - type: ReplaceText
+          substitutions:
+            - text: app-name
+              with: "#artifactId"
+    #api-grid transformation
+    - includes: [ "accelerators/api-grid/k8s/**" ]
+      condition: "#apiSamples.contains('k8s')"
+      chain:
+        - type: ReplaceText
+          substitutions:
+            - text: app-name
+              with: "#artifactId"
+            - text: api-group1
+              with: "#firstApiGroup"
+            - text: api-group2
+              with: "#secondApiGroup"
+    - includes: [ "accelerators/api-grid/cf/**" ]
+      condition: "#apiSamples.contains('cf')"
+      chain:
+        - type: ReplaceText
+          substitutions:
+            - text: app-name
+              with: "#artifactId"
+            - text: api-group1
+              with: "#firstApiGroup"
+            - text: api-group2
+              with: "#secondApiGroup"
