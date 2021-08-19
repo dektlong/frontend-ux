@@ -15,9 +15,13 @@ spec:
       order: 0
       tags:
         - api-group2
+      title: "SSO protected api for write functionality"
+      description: "SSO protected api for write/delete/update interactions with the frontend service"
     - predicates:
         - Path=/api-group1/
         - Method=GET
       order: 1000
       tags:
         - api-group1      
+      title: "open api for read-only functionality"
+      description: "open api for read only interactions with the front end service"
