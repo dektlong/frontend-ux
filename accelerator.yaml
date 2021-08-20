@@ -29,7 +29,7 @@ accelerator:
     dataType: boolean
     dependsOn:
       name: appDeploymentType
-      value: [cnr]
+      value: cnr
     defaultValue: false
     
   #apis
