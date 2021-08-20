@@ -6,6 +6,33 @@ accelerator:
   - onlinestore-dev
 
   options:
+  
+  #app deployment
+  - name: appDeploymentType
+    label: App deployment config
+    description: Type of deployment configurations
+    required: true
+    defaultValue: k8s
+    inputType: select
+    choices:
+      - value: k8s
+        text: K8s simple
+      - value: cnr
+        text: Cloud Native Runtime (kNative)
+      - value: cf
+        text: Cloud Foundry manifest
+  
+  - name: cnrScaling
+    label: Scale to zero
+    description: Enable function to scale to zero
+    inputType: toggle
+    dataType: boolean
+    dependsOn:
+      name: appDeploymentType
+      value: [cnr]
+    defaultValue: false
+    
+  #apis
   - name: firstApiGroup
     label: First level API group
     description: Name of the first level API group
@@ -29,20 +56,6 @@ accelerator:
     description: Name of the Fifth API group
     defaultValue: apiGroup5
   
-  - name: appDeploymentType
-    label: App deployment config
-    description: Type of deployment configurations
-    required: true
-    defaultValue: k8s
-    inputType: select
-    choices:
-      - value: k8s
-        text: K8s simple
-      - value: cnr
-        text: Cloud Native Runtime (kNative)
-      - value: cf
-        text: Cloud Foundry manifest
-      
   - name: apiSamples
     inputType: checkbox
     label: API samples
