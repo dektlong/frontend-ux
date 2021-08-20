@@ -22,7 +22,7 @@ accelerator:
       - value: cf
         text: Cloud Foundry manifest
   
-  - name: cnrScaling
+  - name: scaleToZero
     label: Scale to zero
     description: Enable function to scale to zero
     inputType: toggle
@@ -96,6 +96,10 @@ engine:
           substitutions:
             - text: app-name
               with: "#artifactId"
+        - type: ReplaceText
+          substitutions:
+            - text: {{scaleToZero}}
+              with: "#scaleToZero"
     #api-grid transformation
     - includes: [ "accelerators/api-grid/k8s/**" ]
       condition: "#apiSamples.contains('k8s')"
