@@ -96,7 +96,7 @@ engine:
           substitutions:
             - text: app-name
               with: "#artifactId"
-            - text: {{scaleToZero}}
+            - text: scale-to-zero-value
               with: "#scaleToZero"
     #api-grid transformation
     - includes: [ "accelerators/api-grid/k8s/**" ]
