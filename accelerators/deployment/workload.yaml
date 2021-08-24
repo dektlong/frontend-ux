@@ -8,7 +8,7 @@ metadata:
 spec:
 
   git:
-    url: git2
+    url: git-repo
     ref: {branch: main}
     
 resources:
