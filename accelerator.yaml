@@ -17,10 +17,18 @@ accelerator:
     choices:
       - value: k8s
         text: K8s simple
+      - value: workload
+        text: TAP workload
       - value: cnr
         text: Cloud Native Runtime (kNative)
       - value: cf
         text: Cloud Foundry manifest
+  - name: gitRepo
+    label: Git repo
+    inputType: text
+    required: true
+    dataType: string
+    defaultValue: https://github.com/dektlong/dekt4pets-backend
   
   - name: scaleToZero
     label: Scale to zero
@@ -89,6 +97,15 @@ engine:
           substitutions:
             - text: app-name
               with: "#artifactId"
+    - includes: [ "accelerators/deployment/workload.yaml" ]
+      condition: "#appDeploymentType == 'workload'"
+      chain:
+        - type: ReplaceText
+          substitutions:
+            - text: app-name
+              with: "#artifactId"
+            - text: git-repo
+              with: "#gitRepo"
     - includes: [ "accelerators/deployment/app-knative.yaml"]
       condition: "#appDeploymentType == 'cnr'"
       chain:
