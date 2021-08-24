@@ -8,7 +8,7 @@ spec:
       annotations:
         client.knative.dev/user-image: app-name:latest
         autoscaling.knative.dev/enable-scale-to-zero: scale-to-zero-value
-      name: hello-function-v1
+      name: app-name-revision1
     spec:
       containerConcurrency: 10
       containers:
