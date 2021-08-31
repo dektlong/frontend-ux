@@ -3,7 +3,7 @@ kind: Workload
 metadata:
   name: app-name
   labels:
-    app.tanzu.vmware.com/workload-type: web   # (1)
+    app.tanzu.vmware.com/workload-type: web
 
 spec:
   source:
