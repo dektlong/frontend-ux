@@ -1,20 +1,23 @@
-apiVersion: kontinue.io/v1alpha1
+apiVersion: carto.run/v1alpha1
 kind: Workload
 metadata:
   name: app-name
   labels:
-    app.tanzu.vmware.com/workload-type: web
+    app.tanzu.vmware.com/workload-type: web   # (1)
 
 spec:
+  source:
+    git:
+      url: git-repo
+      ref:
+        branch: "main"
+        #tag: "v0.0.1"
+        #commit: "b4df00d"
 
-  git:
-    url: git-repo
-    ref: {branch: main}
-    
-resources:
+  resources:
     requests:
       memory: 1Gi
       cpu: 100m
     limits:
       memory: 1Gi
-      cpu: 1000m
+      cpu: 4000m
