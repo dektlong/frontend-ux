@@ -19,8 +19,6 @@ accelerator:
         text: K8s simple
       - value: workload
         text: TAP workload
-      - value: cnr
-        text: Cloud Native Runtime (kNative)
       - value: cf
         text: Cloud Foundry manifest
   - name: gitRepo
@@ -29,16 +27,6 @@ accelerator:
     required: true
     dataType: string
     defaultValue: https://github.com/dektlong/dekt4pets-frontend
-  
-  - name: scaleToZero
-    label: Scale to zero
-    description: Enable function to scale to zero
-    inputType: toggle
-    dataType: boolean
-    dependsOn:
-      name: appDeploymentType
-      value: cnr
-    defaultValue: false
     
   #apis
   - name: firstApiGroup
@@ -106,15 +94,6 @@ engine:
               with: "#artifactId"
             - text: git-repo
               with: "#gitRepo"
-    - includes: [ "accelerators/deployment/app-knative.yaml"]
-      condition: "#appDeploymentType == 'cnr'"
-      chain:
-        - type: ReplaceText
-          substitutions:
-            - text: app-name
-              with: "#artifactId"
-            - text: scale-to-zero-value
-              with: "#scaleToZero"
     #api-grid transformation
     - includes: [ "accelerators/api-grid/k8s/**" ]
       condition: "#apiSamples.contains('k8s')"
