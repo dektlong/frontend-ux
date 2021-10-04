@@ -71,21 +71,21 @@ engine:
   merge:
     #generic transformations
     - includes: ["**"]
-      excludes: [ "accelerators/**" ]
+      excludes: [ "config/**" ]
       chain:
         - type: ReplaceText
           substitutions:
             - text: app-name
               with: "#artifactId"
     #deployment transformation
-    - includes: [ "accelerators/deployment/app-simple.yaml" ]
+    - includes: [ "config/deployment/app-simple.yaml" ]
       condition: "#appDeploymentType == 'k8s'"
       chain:
         - type: ReplaceText
           substitutions:
             - text: app-name
               with: "#artifactId"
-    - includes: [ "accelerators/deployment/workload.yaml" ]
+    - includes: [ "config/deployment/workload.yaml" ]
       condition: "#appDeploymentType == 'workload'"
       chain:
         - type: ReplaceText
@@ -95,7 +95,7 @@ engine:
             - text: git-repo
               with: "#gitRepo"
     #api-grid transformation
-    - includes: [ "accelerators/api-grid/k8s/**" ]
+    - includes: [ "config/api-grid/k8s/**" ]
       condition: "#apiSamples.contains('k8s')"
       chain:
         - type: ReplaceText
@@ -106,7 +106,7 @@ engine:
               with: "#firstApiGroup"
             - text: api-group2
               with: "#secondApiGroup"
-    - includes: [ "accelerators/api-grid/cf/**" ]
+    - includes: [ "config/api-grid/cf/**" ]
       condition: "#apiSamples.contains('cf')"
       chain:
         - type: ReplaceText
