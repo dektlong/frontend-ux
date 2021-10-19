@@ -16,7 +16,7 @@ spec:
       ssoEnabled: true
       order: 0
       tags:
-        #@ data.values.secondApiGroup
+        - #@ data.values.secondApiGroup
       title: "SSO protected api for write functionality"
       description: "SSO protected api for write/delete/update interactions with the frontend service"
     - predicates:
@@ -24,6 +24,6 @@ spec:
         - Method=GET
       order: 1000
       tags:
-        #@ data.values.firstApiGroup    
+        - #@ data.values.firstApiGroup    
       title: "open api for read-only functionality"
       description: "open api for read only interactions with the front end service"
