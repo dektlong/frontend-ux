@@ -1,27 +1,29 @@
+#@ load("@ytt:data", "data")
+---
 apiVersion: "tanzu.vmware.com/v1"
 kind: SpringCloudGatewayRouteConfig
 metadata:
-  name: app-name-routes
+  name: #@ data.values.artifactId + "-routes"
 spec:
   service: 
-    name: app-name-service
+    name: #@ data.values.artifactId + "-service"
   routes:
     - predicates:
-        - Path=/api-group2/login
+        - #@ "Path=/api/" + data.values.secondApiGroup + "/login"
         - Method=GET
       filters:
-        - RedirectTo=302, /api-group1
+        - #@ "RedirectTo=302" + ", /" + data.values.firstApiGroup
       ssoEnabled: true
       order: 0
       tags:
-        - api-group2
+        #@ data.values.secondApiGroup
       title: "SSO protected api for write functionality"
       description: "SSO protected api for write/delete/update interactions with the frontend service"
     - predicates:
-        - Path=/api-group1/
+        - #@ "Path=/" + data.values.firstApiGroup
         - Method=GET
       order: 1000
       tags:
-        - api-group1      
+        #@ data.values.firstApiGroup    
       title: "open api for read-only functionality"
       description: "open api for read only interactions with the front end service"
