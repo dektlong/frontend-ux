@@ -7,20 +7,21 @@ accelerator:
 
   options:
   
-  #app deployment
+  #deployment
   - name: appDeploymentType
     label: App deployment config
     description: Type of deployment configurations
     required: true
-    defaultValue: k8s
+    defaultValue: tap
     inputType: select
     choices:
-      - value: k8s
-        text: K8s simple
-      - value: workload
+      - value: tap
         text: TAP workload
+      - value: k8s
+        text: K8s deployment
       - value: cf
         text: Cloud Foundry manifest
+        
   - name: gitRepo
     label: Git repo
     inputType: text
@@ -28,17 +29,18 @@ accelerator:
     dataType: string
     defaultValue: https://github.com/dektlong/dekt4pets-frontend
     
-  #apis
+  #apis groups
   - name: firstApiGroup
     label: First level API group
     description: Name of the first level API group
     defaultValue: apiGroup1
     required: true
+    defaultValue: apiGroup1
   - name: secondApiGroup
     label: Second level API group
+    display: true
     description: Name of the second API group
     defaultValue: apiGroup2
-    display: true
   - name: thirdApiGroup
     label: Third  level API group
     description: Name of the third API group
@@ -51,11 +53,14 @@ accelerator:
     label: Fifth level API group
     description: Name of the Fifth API group
     defaultValue: apiGroup5
-  
+
+  #apis samples
   - name: apiSamples
     inputType: checkbox
     label: API samples
     description: API developement samples
+    dependsOn:
+      name: addAPIs
     display: true
     dataType: [string]
     defaultValue:
@@ -65,7 +70,6 @@ accelerator:
         text: routes and gateway definitions for k8s
       - value: cf
         text: routes and gateway definitions for Cloud Foundry
-
 
 engine:
   merge:
@@ -77,43 +81,32 @@ engine:
           substitutions:
             - text: app-name
               with: "#artifactId"
-    #deployment transformation
-    - includes: [ "config/deployment/app-simple.yaml" ]
+   #deployment transformations
+    - includes: [ "config/deployment/workload.yaml" ]
+      condition: "#appDeploymentType == 'tap'"
+      chain:
+        - type: YTT
+    - includes: [ "config/deployment/deployment.yaml" ]
       condition: "#appDeploymentType == 'k8s'"
       chain:
-        - type: ReplaceText
-          substitutions:
-            - text: app-name
-              with: "#artifactId"
-    - includes: [ "config/deployment/workload.yaml" ]
-      condition: "#appDeploymentType == 'workload'"
+        - type: YTT
+    - includes: [ "config/deployment/deployment.yaml", "config/deployment/skaffold.yaml"]
+      condition: "#appDeploymentType == 'k8sSkaffold'"
       chain:
-        - type: ReplaceText
-          substitutions:
-            - text: app-name
-              with: "#artifactId"
-            - text: git-repo
-              with: "#gitRepo"
-    #api-grid transformation
+        - type: YTT
+    #api-grid transformations
     - includes: [ "config/api-grid/k8s/**" ]
       condition: "#apiSamples.contains('k8s')"
       chain:
-        - type: ReplaceText
-          substitutions:
-            - text: app-name
-              with: "#artifactId"
-            - text: api-group1
-              with: "#firstApiGroup"
-            - text: api-group2
-              with: "#secondApiGroup"
+        - type: YTT
     - includes: [ "config/api-grid/cf/**" ]
       condition: "#apiSamples.contains('cf')"
       chain:
         - type: ReplaceText
           substitutions:
-            - text: app-name
-              with: "#artifactId"
-            - text: api-group1
-              with: "#firstApiGroup"
-            - text: api-group2
-              with: "#secondApiGroup"
+          - text: app-name
+            with: "#artifactId"
+          - text: api-group1
+            with: "#firstApiGroup"
+          - text: api-group2
+            with: "#secondApiGroup"
