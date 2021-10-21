@@ -84,5 +84,4 @@ engine:
             with: "#firstApiGroup"
           - text: api-group2
             with: "#secondApiGroup"
-      chain:
         - type: YTT
