@@ -5,4 +5,3 @@ applications:
   path: ./build
   routes:
     - route: #@ data.values.artifactId + ".apps.internal"
-  memory: 1G
