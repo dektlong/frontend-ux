@@ -73,6 +73,10 @@ engine:
       condition: "#appDeploymentType == 'k8s'"
       chain:
         - type: YTT
+    - includes: [ "config/cf/manifest.yaml ]
+      condition: "#appDeploymentType == 'cf'"
+      chain:
+        - type: YTT
     - includes: [ "config/cf/**" ]
       condition: "#appDeploymentType == 'cf'"
       chain:
@@ -84,4 +88,3 @@ engine:
             with: "#firstApiGroup"
           - text: api-group2
             with: "#secondApiGroup"
-        - type: YTT
