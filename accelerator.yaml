@@ -73,7 +73,7 @@ engine:
       condition: "#appDeploymentType == 'k8s'"
       chain:
         - type: YTT
-    - includes: [ "config/cf/manifest.yaml ]
+    - includes: [ "config/cf/manifest.yaml" ]
       condition: "#appDeploymentType == 'cf'"
       chain:
         - type: YTT
