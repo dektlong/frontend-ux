@@ -73,15 +73,7 @@ engine:
       condition: "#appDeploymentType == 'k8s'"
       chain:
         - type: YTT
-    - includes: [ "config/k8s/deployment.yaml", "config/k8s/skaffold.yaml", "config/k8s/gateway-dev.yaml", "config/k8s/routes.yaml"]
-      condition: "#appDeploymentType == 'k8sSkaffold'"
-      chain:
-        - type: YTT
-    - includes: [ "config/cf/manifest.yaml"]
-      condition: "#appDeploymentType == 'cf'"
-      chain:
-        - type: YTT
-    - includes: [ "config/cf/gateway-dev.json", "config/cf/routes.json" ]
+    - includes: [ "config/cf/**" ]
       condition: "#appDeploymentType == 'cf'"
       chain:
         - type: ReplaceText
@@ -92,3 +84,5 @@ engine:
             with: "#firstApiGroup"
           - text: api-group2
             with: "#secondApiGroup"
+      chain:
+        - type: YTT
