@@ -77,7 +77,7 @@ engine:
       condition: "#appDeploymentType == 'cf'"
       chain:
         - type: YTT
-    - includes: [ "config/cf/**" ]
+    - includes: [ "config/cf/*.json" ]
       condition: "#appDeploymentType == 'cf'"
       chain:
         - type: ReplaceText
