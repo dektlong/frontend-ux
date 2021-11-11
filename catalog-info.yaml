@@ -1,8 +1,8 @@
 apiVersion: backstage.io/v1alpha1
 kind: Component
 metadata:
-  name: backend-api-for-online-stores
-  description: Backend API for online-stores
+  name: frontend-ux-for-online-stores
+  description: Frontend UX for Online Stores
   tags:
     - onlinestore-dev
   annotations:
