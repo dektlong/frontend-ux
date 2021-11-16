@@ -1,5 +1,5 @@
 accelerator:
-  displayName: Frontend UX for Online Stores
+  displayName: Frontend UX
   description: Accelerator to create fronted UX for online Stores
   iconUrl: https://raw.githubusercontent.com/dektlong/dekt-images/main/reactjs-logo.png
   tags:
@@ -7,7 +7,7 @@ accelerator:
 
   options:
   
-  #deployment
+ #deployment
   - name: appDeploymentType
     label: Deployment environment
     description: Type of deployment configurations
@@ -16,11 +16,13 @@ accelerator:
     inputType: select
     choices:
       - value: tap
-        text: Tanzu Application Platform
-      - value: k8s
-        text: K8s deployment
+        text: Tanzu App Platform workload
+      #- value: k8s
+      #  text: K8s deployment
+     # - value: k8sSkaffold
+      #  text: K8s deployment with Skaffold configs
       - value: cf
-        text: Tanzu Application Service (cf)
+        text: Tanzu App Service manifest
         
   - name: gitRepo
     label: Git repo
