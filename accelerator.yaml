@@ -29,7 +29,7 @@ accelerator:
     inputType: text
     required: true
     dataType: string
-    defaultValue: https://github.com/dektlong/dekt4pets-frontend
+    defaultValue: my-frontend
     
  #apis groups
   - name: apiGroups
