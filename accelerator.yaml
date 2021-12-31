@@ -39,8 +39,8 @@ accelerator:
     required: false
     dataType: [string]
     defaultValue:
-      - my-api-group1
-      - my-api-group2
+      - my-apigroup1
+      - my-apigroup2
 
 engine:
   merge:
