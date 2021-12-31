@@ -9,21 +9,21 @@ spec:
     name: #@ data.values.artifactId + "-service"
   routes:
     - predicates:
-        - #@ "Path=/api/" + data.values.secondApiGroup + "/login"
+        - #@ "Path=/api/" + data.values.apiGroups[1] + "/login"
         - Method=GET
       filters:
-        - #@ "RedirectTo=302" + ", /" + data.values.firstApiGroup
+        - #@ "RedirectTo=302" + ", /" + data.values.apiGroups[0]
       ssoEnabled: true
       order: 0
       tags:
-        - #@ data.values.secondApiGroup
+        - #@ data.values.apiGroups[1]
       title: "SSO protected api for write functionality"
       description: "SSO protected api for write/delete/update interactions with the frontend service"
     - predicates:
-        - #@ "Path=/" + data.values.firstApiGroup
+        - #@ "Path=/" + data.values.apiGroups[0]
         - Method=GET
       order: 1000
       tags:
-        - #@ data.values.firstApiGroup    
+        - #@ data.values.apiGroups[0]    
       title: "open api for read-only functionality"
       description: "open api for read only interactions with the front end service"
