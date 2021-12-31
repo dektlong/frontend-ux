@@ -8,21 +8,21 @@ accelerator:
   options:
   
  #deployment
-  - name: appDeploymentType
-    label: Deployment environment
-    description: Type of deployment configurations
-    required: true
-    defaultValue: tap
-    inputType: select
-    choices:
-      - value: tap
-        text: Tanzu App Platform workload
+  #- name: appDeploymentType
+  #  label: Deployment environment
+  #  description: Type of deployment configurations
+  #  required: true
+  #  defaultValue: tap
+  #  inputType: select
+  #  choices:
+  #    - value: tap
+  #      text: Tanzu App Platform workload
       #- value: k8s
       #  text: K8s deployment
      # - value: k8sSkaffold
       #  text: K8s deployment with Skaffold configs
-      - value: cf
-        text: Tanzu App Service manifest
+   #   - value: cf
+   #     text: Tanzu App Service manifest
         
   - name: gitRepo
     label: Git repo
@@ -47,14 +47,15 @@ accelerator:
     label: Third  level API group
     description: Name of the third API group
     defaultValue: apiGroup3
-  - name: forthApiGroup
-    label: Forth level API group
-    description: Name of the forth API group
-    defaultValue: apiGroup4
-  - name: fifthApiGroup
-    label: Fifth level API group
-    description: Name of the Fifth API group
-    defaultValue: apiGroup5
+    display: false
+  #- name: forthApiGroup
+  #  label: Forth level API group
+  #  description: Name of the forth API group
+  #  defaultValue: apiGroup4
+  #- name: fifthApiGroup
+  #  label: Fifth level API group
+  #  description: Name of the Fifth API group
+  #  defaultValue: apiGroup5
 
 engine:
   merge:
@@ -68,29 +69,29 @@ engine:
               with: "#artifactId"
   #deployment transformations
     - includes: [ "config/k8s/gateway-dev.yaml", "config/k8s/routes.yaml"]
-      condition: "#appDeploymentType != 'cf'"
+   #   condition: "#appDeploymentType != 'cf'"
       chain:
         - type: YTT
     - includes: [ "config/k8s/workload.yaml" ]
-      condition: "#appDeploymentType == 'tap'"
+    #  condition: "#appDeploymentType == 'tap'"
       chain:
         - type: YTT
-    - includes: [ "config/k8s/deployment.yaml" ]
-      condition: "#appDeploymentType == 'k8s'"
-      chain:
-        - type: YTT
-    - includes: [ "config/cf/manifest.yaml" ]
-      condition: "#appDeploymentType == 'cf'"
-      chain:
-        - type: YTT
-    - includes: [ "config/cf/*.json" ]
-      condition: "#appDeploymentType == 'cf'"
-      chain:
-        - type: ReplaceText
-          substitutions:
-          - text: app-name
-            with: "#artifactId"
-          - text: api-group1
-            with: "#firstApiGroup"
-          - text: api-group2
-            with: "#secondApiGroup"
+    #- includes: [ "config/k8s/deployment.yaml" ]
+    #  condition: "#appDeploymentType == 'k8s'"
+    #  chain:
+    #    - type: YTT
+    #- includes: [ "config/cf/manifest.yaml" ]
+    #  condition: "#appDeploymentType == 'cf'"
+    #  chain:
+    #    - type: YTT
+    #- includes: [ "config/cf/*.json" ]
+    #  condition: "#appDeploymentType == 'cf'"
+    #  chain:
+    #    - type: ReplaceText
+    #      substitutions:
+    #      - text: app-name
+    #        with: "#artifactId"
+    #      - text: api-group1
+     #       with: "#firstApiGroup"
+     #     - text: api-group2
+     #       with: "#secondApiGroup"
