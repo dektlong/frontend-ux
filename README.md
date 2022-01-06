@@ -1,9 +1,7 @@
 # Introduction
-An Accelerator to create internal APIs for online stores.
+An Accelerator to create frontend UX with ReactJS
 
-The frontend service fits into a larger Online Store application, which includes a WebUI, an edge service, as well as caching and database services.
-
-The service can be accessed from a Web UI or directly at the endpoints it exposes.
+The app should expose a Web UI or accesible via an open API endpoint.
 
 ## Internal API Endpoints
 
