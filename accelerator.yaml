@@ -31,7 +31,7 @@ accelerator:
     dataType: string
     defaultValue: my-frontend
     
-   - name: parentApp
+  - name: parentApp
     label: Name of parent application (the Big A app)
     description: Name of the parent application this component is a part of
     inputType: text
