@@ -59,22 +59,22 @@ engine:
           substitutions:
             - text: app-name
               with: "#artifactId"
-  #deployment transformations
-    - includes: [ "config/k8s/gateway-dev.yaml", "config/k8s/routes.yaml"]
-   #   condition: "#appDeploymentType != 'cf'"
-      chain:
-        - type: YTT
-    - includes: [ "config/k8s/workload.yaml" ]
+  #deployment configs per type
+    - includes: [ "config/tap/**"]
     #  condition: "#appDeploymentType == 'tap'"
       chain:
         - type: YTT
-    #- includes: [ "config/k8s/deployment.yaml" ]
-    #  condition: "#appDeploymentType == 'k8s'"
-    #  chain:
-    #    - type: YTT
-    #- includes: [ "config/cf/manifest.yaml" ]
+    - includes: [ "config/cf/**"]
     #  condition: "#appDeploymentType == 'cf'"
-    #  chain:
+      chain:
+        - type: YTT
+    - includes: [ "config/k8s/**"]
+    #  condition: "#appDeploymentType == 'k8s'"
+      chain:
+        - type: YTT
+    - includes: [ "config/backstage/**"]
+      chain:
+        - type: YTT
     #    - type: YTT
     #- includes: [ "config/cf/*.json" ]
     #  condition: "#appDeploymentType == 'cf'"
