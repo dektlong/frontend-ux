@@ -1,5 +1,5 @@
 accelerator:
-  displayName: API-driven frontend with ReactJS
+  displayName: API-driven frontend UX with ReactJS
   description: Accelerator to create fronted UX for online Stores
   iconUrl: https://raw.githubusercontent.com/dektlong/dekt-images/main/reactjs-logo.png
   tags:
@@ -30,6 +30,13 @@ accelerator:
     required: true
     dataType: string
     defaultValue: my-frontend
+    
+   - name: parentApp
+    label: Name of parent application (the Big A app)
+    description: Name of the parent application this component is a part of
+    inputType: text
+    dataType: string
+    defaultValue: my-BigA-app
     
  #apis groups
   - name: apiGroups
