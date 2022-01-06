@@ -7,23 +7,7 @@ accelerator:
 
   options:
   
- #deployment
-  - name: appDeploymentType
-    label: Deployment environment
-    description: Type of deployment configurations
-    required: true
-    defaultValue: tap
-    inputType: select
-    choices:
-      - value: tap
-        text: Tanzu App Platform workload
-      - value: k8s
-        text: K8s deployment
-      - value: k8sSkaffold
-        text: K8s deployment with Skaffold configs
-      - value: cf
-        text: Tanzu App Service manifest
-        
+         
   - name: gitRepo
     label: Git repo
     inputType: text
@@ -48,6 +32,20 @@ accelerator:
     defaultValue:
       - my-apigroup1
       - my-apigroup2
+      
+  #deployment type (for demo vision paiting)
+  - name: appDeploymentType
+    label: Deployment environment
+    description: Type of deployment configurations
+    defaultValue: tap
+    inputType: select
+    choices:
+    - value: tap
+      text: Tanzu App Platform workload
+    - value: k8s
+      text: K8s deployment with Skaffold configs
+    - value: cf
+      text: Tanzu App Service manifest
 
 engine:
   merge:
